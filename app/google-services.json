@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "837738017800",
+    "firebase_url": "https://suppapp-962a5.firebaseio.com",
+    "project_id": "suppapp-962a5",
+    "storage_bucket": "suppapp-962a5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:837738017800:android:a81938c6f45d6697",
+        "android_client_info": {
+          "package_name": "com.pullapps.suppapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "837738017800-07u007rsfqr9dfkvsbjfkqjek1kjc5kn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pullapps.suppapp",
+            "certificate_hash": "2e48ed28b6493594f0abf1a243baade4da923b97"
+          }
+        },
+        {
+          "client_id": "837738017800-2l5kohn61rhi50fc4ghu8de0lftl56nn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALb8fVQOLE3KVLCOYYRDA-h7rpxINTlss"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "837738017800-2l5kohn61rhi50fc4ghu8de0lftl56nn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
