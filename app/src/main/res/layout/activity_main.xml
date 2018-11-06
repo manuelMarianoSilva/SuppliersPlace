@@ -2,43 +2,21 @@
 <LinearLayout
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.pullapps.suppapp.View.Main.MainActivity">
 
     <Button
-        android:id="@+id/loginBtnMainActivity"
-        android:text="login"
+        android:id="@+id/btnCrearCompulsa"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="@string/crear_compulsa"
+        android:onClick="crearCompulsa"/>
 
-    <Button
-        android:id="@+id/logoutBtnMainActivity"
-        android:text="logout"
+    <ListView
+        android:id="@+id/lstCompulsas"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:textAlignment="center"
-        android:id="@+id/nombreEnMainActivity"
-        android:text="Aca va el nombre"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:textAlignment="center"
-        android:id="@+id/maileEnMainActivity"
-        android:text="Aca va el mail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:textAlignment="center"
-        android:id="@+id/urlEnMainActivity"
-        android:text="Aca va el url"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"></ListView>
 
 </LinearLayout>

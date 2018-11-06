@@ -98,6 +98,7 @@ public class LoginActivity extends AppCompatActivity implements PasswordRecovery
             @Override
             public void onSuccess(LoginResult loginResult) {
                 handleFacebookAccessToken(loginResult.getAccessToken());
+                goToMainScreen();
             }
 
             @Override
@@ -156,6 +157,7 @@ public class LoginActivity extends AppCompatActivity implements PasswordRecovery
 
         if (result.isSuccess()){
             firebaseAuthWithGoogle(result.getSignInAccount());
+            goToMainScreen();
         } else {
             Toast.makeText(this, "Login failed!!!", Toast.LENGTH_SHORT).show();
         }
@@ -228,6 +230,7 @@ public class LoginActivity extends AppCompatActivity implements PasswordRecovery
                         if (task.isSuccessful()){
                             Toast.makeText(LoginActivity.this, "Éxito", Toast.LENGTH_SHORT).show();
                             tilPass.setErrorEnabled(false);
+                            goToMainScreen();
                         } else {
                             tilPass.setError("      Fallo en el login");
                             email.setText("");
