@@ -36,11 +36,54 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="fragment_main.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_main.xml">
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="46" selection-start-line="12" selection-start-column="46" selection-end-line="12" selection-end-column="46" />
+              <folding>
+                <element signature="e#490#514#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_main.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="42" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/pullapps/suppapp/View/Main/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="986">
-              <caret line="74" column="90" lean-forward="true" selection-start-line="74" selection-start-column="90" selection-end-line="74" selection-end-column="90" />
+            <state relative-caret-position="119">
+              <caret line="12" column="52" selection-start-line="12" selection-start-column="52" selection-end-line="12" selection-end-column="52" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/pullapps/suppapp/View/Main/MainFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1224">
+              <caret line="93" selection-start-line="93" selection-end-line="93" />
+              <folding>
+                <element signature="e#3342#3739#0" expanded="true" />
+                <element signature="e#3738#3739#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -2355,17 +2398,19 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/pullapps/suppapp/View/Login/RegisterActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/pullapps/suppapp/View/Login/LoginActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/pullapps/suppapp/View/model/Compulsa.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/pullapps/suppapp/View/Main/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/pullapps/suppapp/View/Main/MainFragment.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-98" />
-    <option name="y" value="61" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="50" />
+    <option name="y" value="47" />
     <option name="width" value="1386" />
     <option name="height" value="788" />
   </component>
@@ -2375,21 +2420,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="SuppliersPlace" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="SuppliersPlace" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -2406,7 +2437,32 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="AndroidView">
+        <subPane>
+          <expand>
+            <path>
+              <item name="SuppliersPlace" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="SuppliersPlace" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+            </path>
+            <path>
+              <item name="SuppliersPlace" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
+            </path>
+            <path>
+              <item name="SuppliersPlace" type="1abcf292:AndroidViewProjectNode" />
+              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2725,6 +2781,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="Android Profiler" order="7" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -2733,21 +2790,21 @@
       <window_info id="Build Variants" order="2" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50226927" side_tool="true" weight="0.32843137" />
-      <window_info anchor="right" id="Preview" order="3" weight="0.30484116" />
+      <window_info active="true" anchor="right" id="Preview" order="3" visible="true" weight="0.30484116" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Logcat" order="7" sideWeight="0.4978678" weight="0.3251634" />
+      <window_info anchor="bottom" id="Logcat" order="7" sideWeight="0.4978678" weight="0.5996732" />
       <window_info id="Captures" order="2" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4984756" visible="true" weight="0.20953101" />
-      <window_info active="true" anchor="bottom" id="Build" order="8" sideWeight="0.4977307" visible="true" weight="0.32843137" />
+      <window_info anchor="bottom" id="Build" order="8" sideWeight="0.4977307" weight="0.32843137" />
       <window_info anchor="right" id="Gradle" order="3" />
       <window_info id="Structure" order="1" sideWeight="0.5015244" side_tool="true" weight="0.20889895" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" id="Device File Explorer" order="3" side_tool="true" weight="0.3295626" />
       <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" id="Assistant" order="3" weight="0.26172706" />
       <window_info anchor="bottom" id="Messages" order="7" weight="0.32900432" />
@@ -2804,13 +2861,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/pullapps/suppapp/View/Login/LoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3383">
-          <caret line="236" column="49" selection-start-line="236" selection-start-column="49" selection-end-line="236" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider editor-type-id="android-designer2">
         <state />
@@ -3051,13 +3101,13 @@
     </entry>
     <entry file="jar://D:/Users/yonoc/AppData/Local/Android/SDK/platforms/android-26/android.jar!/android/os/Handler.class" />
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="67" selection-start-line="7" selection-start-column="67" selection-end-line="7" selection-end-column="67" />
         </state>
-      </provider>
-      <provider editor-type-id="android-manifest">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml">
@@ -3091,19 +3141,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="62" selection-start-line="3" selection-start-column="62" selection-end-line="3" selection-end-column="62" />
-          <folding>
-            <element signature="e#566#590#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/pullapps/suppapp/View/Login/LoginActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="122">
@@ -3134,19 +3171,50 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="21" column="20" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/pullapps/suppapp/View/Main/MainFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1224">
+          <caret line="93" selection-start-line="93" selection-end-line="93" />
           <folding>
-            <element signature="e#338#339#0" expanded="true" />
-            <element signature="e#363#364#0" expanded="true" />
-            <element signature="e#394#395#0" expanded="true" />
-            <element signature="e#421#422#0" expanded="true" />
+            <element signature="e#3342#3739#0" expanded="true" />
+            <element signature="e#3738#3739#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/pullapps/suppapp/View/Main/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="986">
-          <caret line="74" column="90" lean-forward="true" selection-start-line="74" selection-start-column="90" selection-end-line="74" selection-end-column="90" />
+        <state relative-caret-position="119">
+          <caret line="12" column="52" selection-start-line="12" selection-start-column="52" selection-end-line="12" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="42" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_main.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="46" selection-start-line="12" selection-start-column="46" selection-end-line="12" selection-end-column="46" />
+          <folding>
+            <element signature="e#490#514#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
