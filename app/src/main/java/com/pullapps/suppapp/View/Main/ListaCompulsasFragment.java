@@ -2,6 +2,7 @@ package com.pullapps.suppapp.View.Main;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -27,7 +28,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MainFragment extends Fragment {
+public class ListaCompulsasFragment extends Fragment {
     private static final String COMPULSA_NODO = "Compulsas";
     private static final String TAG = "MainActivity";
     private Button btnCrearCompulsa;
@@ -37,12 +38,18 @@ public class MainFragment extends Fragment {
     private ArrayAdapter arrayAdapter;
     private DatabaseReference databaseReference;
     private String claveCompulsa;
+    private CambiarFragmentListener cambiarFragmentListener;
 
 
-    public MainFragment() {
+    public ListaCompulsasFragment() {
         // Required empty public constructor
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        cambiarFragmentListener = (CambiarFragmentListener) context;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,7 +64,6 @@ public class MainFragment extends Fragment {
         arrayAdapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_list_item_1, titulosCompulsas);
         lstCompulsas.setAdapter(arrayAdapter);
 
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.child(COMPULSA_NODO).addValueEventListener(new ValueEventListener() {
             @Override
@@ -68,7 +74,7 @@ public class MainFragment extends Fragment {
                     for (DataSnapshot snapshot:dataSnapshot.getChildren()){
                         Compulsa compulsa = snapshot.getValue(Compulsa.class);
                         Log.w(TAG, "Titulo Compulsa: " + compulsa.getTitle());
-                        titulosCompulsas.add(compulsa.getTitle());
+                        titulosCompulsas.add(compulsa.getId() + " - " + compulsa.getTitle());
                         compulsas.add(compulsa);
                     }
                 }
@@ -84,12 +90,18 @@ public class MainFragment extends Fragment {
         btnCrearCompulsa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                claveCompulsa = databaseReference.push().getKey();
-                Compulsa compulsa = new Compulsa(claveCompulsa, "Compulsa " + claveCompulsa.substring(15, 19));
-                databaseReference.child(COMPULSA_NODO).child(compulsa.getId()).setValue(compulsa);
+                //claveCompulsa = databaseReference.push().getKey();
+                //Compulsa compulsa = new Compulsa(claveCompulsa, "Compulsa " + claveCompulsa.substring(15, 19));
+                //databaseReference.child(COMPULSA_NODO).child(compulsa.getId()).setValue(compulsa);
+                AgregarCompulsaFragment agregarCompulsaFragment = new AgregarCompulsaFragment();
+                cambiarFragmentListener.cambiarFragment(agregarCompulsaFragment);
             }
         });
         return view;
+    }
+
+    public interface CambiarFragmentListener{
+        void cambiarFragment(Fragment fragment);
     }
 
 }

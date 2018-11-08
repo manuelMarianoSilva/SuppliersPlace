@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.Main.AgregarCompulsaFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvTituloAgregarCompulsa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="@string/titulo_agregar_compulsa"
+            android:textSize="10pt"
+            android:paddingBottom="25dp">
+        </TextView>
+
+        <EditText
+            android:id="@+id/edtTituloCompulsa"
+            android:layout_height="wrap_content"
+            android:hint="@string/titulo_compulsa"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:paddingBottom="25dp">
+        </EditText>
+
+        <EditText
+            android:id="@+id/edtDescripcionCompulsa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/descripcion_compulsa"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:paddingBottom="25dp">
+        </EditText>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/btnAgregarCompulsa"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="@string/boton_aceptar_compulsa">
+            </Button>
+
+            <Button
+                android:id="@+id/btnCancelarAgregarCompulsa"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="@string/boton_cancelar_compulsa">
+            </Button>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</ScrollView>

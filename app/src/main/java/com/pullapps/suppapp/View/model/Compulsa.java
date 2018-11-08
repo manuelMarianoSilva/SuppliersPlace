@@ -4,14 +4,16 @@ public class Compulsa {
 
     private String id;
     private String title;
+    private String description;
 
     public Compulsa(){
 
     }
 
-    public Compulsa(String id, String title) {
+    public Compulsa(String id, String title, String description) {
         this.id = id;
         this.title = title;
+        this.description = description;
     }
 
     public String getId() {
@@ -22,4 +24,7 @@ public class Compulsa {
         return title;
     }
 
+    public String getDescription() {
+        return description;
+    }
 }

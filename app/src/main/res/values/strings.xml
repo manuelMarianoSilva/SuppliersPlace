@@ -6,4 +6,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="crear_compulsa">Crear Compulsa</string>
+    <string name="titulo_agregar_compulsa">Crear Nueva Compulsa</string>
+    <string name="titulo_compulsa">Título Compulsa</string>
+    <string name="descripcion_compulsa">Descripción</string>
+    <string name="boton_aceptar_compulsa">Aceptar</string>
+    <string name="boton_cancelar_compulsa">Cancelar</string>
 </resources>
