@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
 import com.pullapps.suppapp.R;
 import com.pullapps.suppapp.View.model.Compulsa;
 
@@ -68,8 +69,7 @@ public class AgregarCompulsaFragment extends Fragment {
                 } else {
                     Compulsa compulsa = new Compulsa(claveCompulsa, tituloCompulsa, descripcionCompulsa);
                     databaseReference.child(COMPULSA_NODO).child(compulsa.getId()).setValue(compulsa);
-                    ListaCompulsasFragment listaCompulsasFragment = new ListaCompulsasFragment();
-                    cambiarFragmentListener.cambiarFragment(listaCompulsasFragment);
+                    cambiarFragmentListener.cambiarFragment(0);
                 }
             }
         });
@@ -77,8 +77,7 @@ public class AgregarCompulsaFragment extends Fragment {
         btnCancelarAgregarCompulsa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ListaCompulsasFragment listaCompulsasFragment = new ListaCompulsasFragment();
-                cambiarFragmentListener.cambiarFragment(listaCompulsasFragment);
+                cambiarFragmentListener.cambiarFragment(0);
             }
         });
 

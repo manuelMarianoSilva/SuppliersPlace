@@ -11,4 +11,8 @@
     <string name="descripcion_compulsa">Descripción</string>
     <string name="boton_aceptar_compulsa">Aceptar</string>
     <string name="boton_cancelar_compulsa">Cancelar</string>
+    <string name="titulo_detalle_compulsa">Detalle Compulsa</string>
+    <string name="boton_volver_compulsa">Volver</string>
+    <string name="boton_seleccionar_archivo">Seleccionar Oferta</string>
+    <string name="boton_subir_archivo">Subir Oferta</string>
 </resources>

@@ -10,9 +10,10 @@ import android.os.Bundle;
 
 import com.google.firebase.database.FirebaseDatabase;
 import com.pullapps.suppapp.R;
+import com.pullapps.suppapp.View.model.Compulsa;
 
 
-public class MainActivity extends AppCompatActivity implements ListaCompulsasFragment.CambiarFragmentListener {
+public class MainActivity extends AppCompatActivity implements ListaCompulsasFragment.CambiarFragmentListener, ListaCompulsasFragment.VerDetalleCompulsaListener{
 
 
 
@@ -33,7 +34,17 @@ public class MainActivity extends AppCompatActivity implements ListaCompulsasFra
     }
 
     @Override
-    public void cambiarFragment(Fragment fragment) {
+    public void cambiarFragment(Integer idClick) {
+        Fragment fragment = null;
+
+        switch (idClick) {
+            case 0:
+                fragment = new ListaCompulsasFragment();
+                break;
+            case 1:
+                fragment = new AgregarCompulsaFragment();
+                break;
+        }
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -42,4 +53,23 @@ public class MainActivity extends AppCompatActivity implements ListaCompulsasFra
         fragmentTransaction.commit();
     }
 
+    @Override
+    public void verDetalle(Compulsa compulsaSeleccionada) {
+        Fragment fragment = new DetalleCompulsaFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putString("id", compulsaSeleccionada.getId());
+        bundle.putString("title", compulsaSeleccionada.getTitle());
+        bundle.putString("description", compulsaSeleccionada.getDescription());
+
+        fragment.setArguments(bundle);
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+        fragmentTransaction.commit();
+
+
+    }
 }

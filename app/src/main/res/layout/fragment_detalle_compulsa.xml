@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.Main.DetalleCompulsaFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvTituloAgregarCompulsa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="@string/titulo_detalle_compulsa"
+            android:textSize="10pt"
+            android:paddingBottom="25dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tvTituloCompulsa"
+            android:layout_height="wrap_content"
+            android:hint="@string/titulo_compulsa"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:paddingBottom="25dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tvDescripcionCompulsa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/descripcion_compulsa"
+            android:inputType="textMultiLine"
+            android:lines="3"
+            android:paddingBottom="25dp">
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre Arhivo:"
+                android:padding="25dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No hay un archivo seleccionado"
+                android:textStyle="italic"
+                android:padding="25dp"/>
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/btnSeleccionarArchivo"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:text="@string/boton_seleccionar_archivo"
+                android:textSize="11dp">
+            </Button>
+
+            <Button
+                android:id="@+id/btnSubirArchivo"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:text="@string/boton_subir_archivo"
+                android:textSize="11dp">
+            </Button>
+
+            <Button
+                android:id="@+id/btnVolverCompulsa"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:text="@string/boton_volver_compulsa"
+                android:textSize="11dp">
+            </Button>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -31,6 +32,9 @@ import java.util.List;
 public class ListaCompulsasFragment extends Fragment {
     private static final String COMPULSA_NODO = "Compulsas";
     private static final String TAG = "MainActivity";
+
+
+
     private Button btnCrearCompulsa;
     private ListView lstCompulsas;
     private List<String> titulosCompulsas;
@@ -39,6 +43,7 @@ public class ListaCompulsasFragment extends Fragment {
     private DatabaseReference databaseReference;
     private String claveCompulsa;
     private CambiarFragmentListener cambiarFragmentListener;
+    private VerDetalleCompulsaListener verDetalleCompulsaListener;
 
 
     public ListaCompulsasFragment() {
@@ -49,6 +54,8 @@ public class ListaCompulsasFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         cambiarFragmentListener = (CambiarFragmentListener) context;
+        verDetalleCompulsaListener = (VerDetalleCompulsaListener) context;
+
     }
 
     @Override
@@ -90,18 +97,27 @@ public class ListaCompulsasFragment extends Fragment {
         btnCrearCompulsa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //claveCompulsa = databaseReference.push().getKey();
-                //Compulsa compulsa = new Compulsa(claveCompulsa, "Compulsa " + claveCompulsa.substring(15, 19));
-                //databaseReference.child(COMPULSA_NODO).child(compulsa.getId()).setValue(compulsa);
-                AgregarCompulsaFragment agregarCompulsaFragment = new AgregarCompulsaFragment();
-                cambiarFragmentListener.cambiarFragment(agregarCompulsaFragment);
+                cambiarFragmentListener.cambiarFragment(1);
+            }
+        });
+
+        lstCompulsas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Compulsa compulsaSeleccionada = compulsas.get(i);
+                verDetalleCompulsaListener.verDetalle(compulsaSeleccionada);
+
             }
         });
         return view;
     }
 
     public interface CambiarFragmentListener{
-        void cambiarFragment(Fragment fragment);
+        void cambiarFragment(Integer idClick);
+    }
+
+    public interface VerDetalleCompulsaListener{
+        void verDetalle(Compulsa compulsaSeleccionada);
     }
 
 }
