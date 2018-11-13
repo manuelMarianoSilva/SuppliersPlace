@@ -33,6 +33,7 @@ public class AgregarCompulsaFragment extends Fragment {
     private ListaCompulsasFragment.CambiarFragmentListener cambiarFragmentListener;
 
 
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

@@ -36,6 +36,7 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.FirebaseDatabase;
 import com.pullapps.suppapp.View.Main.MainActivity;
 import com.pullapps.suppapp.R;
 
@@ -61,6 +62,7 @@ public class LoginActivity extends AppCompatActivity implements PasswordRecovery
         crearBotonIngresoConEmail();
         crearBotonOlvidoDePassword();
 
+        //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         firebaseAuth = FirebaseAuth.getInstance();
         fireBaseAuthStateListener = new FirebaseAuth.AuthStateListener() {

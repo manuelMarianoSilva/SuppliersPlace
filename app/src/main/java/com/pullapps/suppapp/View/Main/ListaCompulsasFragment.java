@@ -15,12 +15,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.facebook.login.LoginManager;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.pullapps.suppapp.R;
+import com.pullapps.suppapp.View.Login.LoginActivity;
 import com.pullapps.suppapp.View.model.Compulsa;
 
 import java.util.ArrayList;
@@ -35,7 +38,7 @@ public class ListaCompulsasFragment extends Fragment {
 
 
 
-    private Button btnCrearCompulsa;
+    private Button btnCrearCompulsa, btnSalir;
     private ListView lstCompulsas;
     private List<String> titulosCompulsas;
     private List<Compulsa> compulsas;
@@ -65,6 +68,7 @@ public class ListaCompulsasFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
         btnCrearCompulsa = (Button) view.findViewById(R.id.btnCrearCompulsa);
+        btnSalir = (Button) view.findViewById(R.id.btnSalir);
         lstCompulsas = (ListView) view.findViewById(R.id.lstCompulsas);
         titulosCompulsas = new ArrayList<>();
         compulsas = new ArrayList<>();
@@ -101,6 +105,19 @@ public class ListaCompulsasFragment extends Fragment {
             }
         });
 
+        btnSalir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                LoginManager.getInstance().logOut();
+
+                //closing this activity
+                getActivity().finish();
+                //starting login activity
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+            }
+        });
+
         lstCompulsas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -118,6 +135,14 @@ public class ListaCompulsasFragment extends Fragment {
 
     public interface VerDetalleCompulsaListener{
         void verDetalle(Compulsa compulsaSeleccionada);
+    }
+
+    public interface SeleccionarArchivoListener{
+        void seleccionDeArchivo();
+    }
+
+    public interface SubirArchivoListener{
+        void subidaDeArchivo();
     }
 
 }
