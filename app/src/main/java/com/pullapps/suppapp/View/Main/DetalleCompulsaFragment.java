@@ -52,7 +52,7 @@ public class DetalleCompulsaFragment extends Fragment {
         btnSeleccionarArchivo = (Button) view.findViewById(R.id.btnSeleccionarArchivo);
         btnSubirArchivo = (Button) view.findViewById(R.id.btnSubirArchivo);
 
-        Bundle bundle = getArguments();
+        final Bundle bundle = getArguments();
 
         tvTituloCompulsa.setText(bundle.getString("title"));
         tvDescripcionCompulsa.setText(bundle.getString("description"));
@@ -75,7 +75,7 @@ public class DetalleCompulsaFragment extends Fragment {
         btnSubirArchivo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                subirArchivoListener.subidaDeArchivo();
+                subirArchivoListener.subidaDeArchivo(bundle.getString("id"));
             }
         });
 

@@ -47,6 +47,7 @@ public class ListaCompulsasFragment extends Fragment {
     private String claveCompulsa;
     private CambiarFragmentListener cambiarFragmentListener;
     private VerDetalleCompulsaListener verDetalleCompulsaListener;
+    private Bundle bundle;
 
 
     public ListaCompulsasFragment() {
@@ -142,7 +143,7 @@ public class ListaCompulsasFragment extends Fragment {
     }
 
     public interface SubirArchivoListener{
-        void subidaDeArchivo();
+        void subidaDeArchivo(String id);
     }
 
 }

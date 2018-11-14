@@ -31,7 +31,7 @@ import com.pullapps.suppapp.R;
 import com.pullapps.suppapp.View.model.Compulsa;
 
 
-public class MainActivity extends AppCompatActivity implements ListaCompulsasFragment.CambiarFragmentListener, ListaCompulsasFragment.VerDetalleCompulsaListener, ListaCompulsasFragment.SeleccionarArchivoListener, ListaCompulsasFragment.SubirArchivoListener{
+public class MainActivity extends AppCompatActivity implements ListaCompulsasFragment.CambiarFragmentListener, ListaCompulsasFragment.VerDetalleCompulsaListener, ListaCompulsasFragment.SeleccionarArchivoListener, ListaCompulsasFragment.SubirArchivoListener {
 
     private Uri archivoUri;
     FirebaseStorage storage;
@@ -106,10 +106,10 @@ public class MainActivity extends AppCompatActivity implements ListaCompulsasFra
     }
 
     @Override
-    public void subidaDeArchivo() {
+    public void subidaDeArchivo(String id) {
 
         if (archivoUri != null) {
-            subirArchivo(archivoUri);
+            subirArchivo(archivoUri, id);
         } else {
             Toast.makeText(this, "Por favor, seleccione un archivo", Toast.LENGTH_SHORT).show();
         }
@@ -139,13 +139,13 @@ public class MainActivity extends AppCompatActivity implements ListaCompulsasFra
 
     private void seleccionarArchivo() {
         Intent intent = new Intent();
-        intent.setType("aplication/pdf");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
+        intent.setType("application/pdf");
+        intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
         startActivityForResult(intent, 86);
 
     }
 
-    private void subirArchivo(Uri archivoUri) {
+    private void subirArchivo(Uri archivoUri, final String id) {
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements ListaCompulsasFra
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         String url = taskSnapshot.getDownloadUrl().toString();
                         DatabaseReference reference =database.getReference();
-                        reference.child(fileName).setValue(url).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        reference.child("Compulsas").child(id).child("pliego").setValue(url).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
 
@@ -191,6 +191,7 @@ public class MainActivity extends AppCompatActivity implements ListaCompulsasFra
         });
 
     }
+
 
 
 }
