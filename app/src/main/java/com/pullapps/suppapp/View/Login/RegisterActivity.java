@@ -18,7 +18,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.pullapps.suppapp.R;
-import com.pullapps.suppapp.View.Main.MainActivity;
+import com.pullapps.suppapp.View.Main.ListaCompulsasActivity;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -124,7 +124,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void goToMain() {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, ListaCompulsasActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }

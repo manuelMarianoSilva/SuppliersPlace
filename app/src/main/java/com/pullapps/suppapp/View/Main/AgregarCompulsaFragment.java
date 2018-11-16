@@ -68,8 +68,8 @@ public class AgregarCompulsaFragment extends Fragment {
                     Toast.makeText(getContext(), "Debe ingresar valores en los campos", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
-                    Compulsa compulsa = new Compulsa(claveCompulsa, tituloCompulsa, descripcionCompulsa);
-                    databaseReference.child(COMPULSA_NODO).child(compulsa.getId()).setValue(compulsa);
+                    Compulsa compulsa = new Compulsa(tituloCompulsa, descripcionCompulsa);
+                    databaseReference.child(COMPULSA_NODO).child(claveCompulsa).setValue(compulsa);
                     cambiarFragmentListener.cambiarFragment(0);
                 }
             }

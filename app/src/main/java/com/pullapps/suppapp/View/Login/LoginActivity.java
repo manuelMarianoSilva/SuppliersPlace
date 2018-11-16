@@ -36,8 +36,7 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.database.FirebaseDatabase;
-import com.pullapps.suppapp.View.Main.MainActivity;
+import com.pullapps.suppapp.View.Main.ListaCompulsasActivity;
 import com.pullapps.suppapp.R;
 
 public class LoginActivity extends AppCompatActivity implements PasswordRecoveryFragment.RecoveryFragmentManipulator, GoogleApiClient.OnConnectionFailedListener{
@@ -280,7 +279,7 @@ public class LoginActivity extends AppCompatActivity implements PasswordRecovery
     }
 
     private void goToMainScreen() {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, ListaCompulsasActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }

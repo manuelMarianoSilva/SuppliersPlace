@@ -34,7 +34,7 @@ import java.util.List;
  */
 public class ListaCompulsasFragment extends Fragment {
     private static final String COMPULSA_NODO = "Compulsas";
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "ListaCompulsasActivity";
 
 
 
@@ -66,7 +66,7 @@ public class ListaCompulsasFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        View view = inflater.inflate(R.layout.fragment_lista_compulsas, container, false);
 
         btnCrearCompulsa = (Button) view.findViewById(R.id.btnCrearCompulsa);
         btnSalir = (Button) view.findViewById(R.id.btnSalir);
@@ -86,7 +86,7 @@ public class ListaCompulsasFragment extends Fragment {
                     for (DataSnapshot snapshot:dataSnapshot.getChildren()){
                         Compulsa compulsa = snapshot.getValue(Compulsa.class);
                         Log.w(TAG, "Titulo Compulsa: " + compulsa.getTitle());
-                        titulosCompulsas.add(compulsa.getId() + " - " + compulsa.getTitle());
+                        titulosCompulsas.add(compulsa.getTitle());
                         compulsas.add(compulsa);
                     }
                 }
