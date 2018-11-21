@@ -2,7 +2,6 @@ package com.pullapps.suppapp.View.Main;
 
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,9 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.pullapps.suppapp.R;
+import com.pullapps.suppapp.View.Utils.CambiadorDeFragment;
+import com.pullapps.suppapp.View.Utils.SeleccionadorDeArchivo;
+import com.pullapps.suppapp.View.Utils.SubidorDeArchivo;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,17 +21,17 @@ import com.pullapps.suppapp.R;
 public class DetalleCompulsaFragment extends Fragment {
     private TextView tvTituloCompulsa, tvDescripcionCompulsa, tvRutaArchivo;
     private Button btnVolverCompulsa, btnSeleccionarArchivo, btnSubirArchivo;
-    private ListaCompulsasFragment.CambiarFragmentListener cambiarFragmentListener;
-    private ListaCompulsasFragment.SeleccionarArchivoListener seleccionarArchivoListener;
-    private ListaCompulsasFragment.SubirArchivoListener subirArchivoListener;
+    private CambiadorDeFragment cambiadorDeFragment;
+    private SeleccionadorDeArchivo seleccionadorDeArchivo;
+    private SubidorDeArchivo subidorDeArchivo;
 
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        cambiarFragmentListener = (ListaCompulsasFragment.CambiarFragmentListener) context;
-        seleccionarArchivoListener = (ListaCompulsasFragment.SeleccionarArchivoListener) context;
-        subirArchivoListener = (ListaCompulsasFragment.SubirArchivoListener) context;
+        cambiadorDeFragment = (CambiadorDeFragment) context;
+        seleccionadorDeArchivo = (SeleccionadorDeArchivo) context;
+        subidorDeArchivo = (SubidorDeArchivo) context;
 
     }
 
@@ -61,14 +62,14 @@ public class DetalleCompulsaFragment extends Fragment {
         btnVolverCompulsa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cambiarFragmentListener.cambiarFragment(0);
+                cambiadorDeFragment.cambiarFragment(0);
             }
         });
 
         btnSeleccionarArchivo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                seleccionarArchivoListener.seleccionDeArchivo();
+                seleccionadorDeArchivo.seleccionarArchivo();
 
             }
         });
@@ -76,7 +77,7 @@ public class DetalleCompulsaFragment extends Fragment {
         btnSubirArchivo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                subirArchivoListener.subidaDeArchivo(bundle.getString("id"));
+                subidorDeArchivo.subirArchivo(bundle.getString("id"));
             }
         });
 

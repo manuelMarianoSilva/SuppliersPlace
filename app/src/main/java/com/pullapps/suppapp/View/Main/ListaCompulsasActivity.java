@@ -28,10 +28,12 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.pullapps.suppapp.R;
+import com.pullapps.suppapp.View.Utils.CambiadorDeFragment;
+import com.pullapps.suppapp.View.Utils.VisualizadorDeDetalle;
 import com.pullapps.suppapp.View.model.Compulsa;
 
 
-public class ListaCompulsasActivity extends AppCompatActivity implements ListaCompulsasFragment.CambiarFragmentListener, ListaCompulsasFragment.VerDetalleCompulsaListener {
+public class ListaCompulsasActivity extends AppCompatActivity implements CambiadorDeFragment, VisualizadorDeDetalle {
 
     private Uri archivoUri;
     FirebaseStorage storage;
@@ -80,6 +82,7 @@ public class ListaCompulsasActivity extends AppCompatActivity implements ListaCo
         //Fragment fragment = new DetalleCompulsaFragment();
 
         Bundle bundle = new Bundle();
+        bundle.putString("id", compulsaSeleccionada.getId());
         bundle.putString("title", compulsaSeleccionada.getTitle());
         bundle.putString("description", compulsaSeleccionada.getDescription());
 

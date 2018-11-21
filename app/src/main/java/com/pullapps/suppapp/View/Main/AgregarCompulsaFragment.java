@@ -13,8 +13,8 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
 import com.pullapps.suppapp.R;
+import com.pullapps.suppapp.View.Utils.CambiadorDeFragment;
 import com.pullapps.suppapp.View.model.Compulsa;
 
 /**
@@ -30,14 +30,14 @@ public class AgregarCompulsaFragment extends Fragment {
     private String claveCompulsa;
     private String tituloCompulsa;
     private String descripcionCompulsa;
-    private ListaCompulsasFragment.CambiarFragmentListener cambiarFragmentListener;
+    private CambiadorDeFragment cambiadorDeFragment;
 
 
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        cambiarFragmentListener = (ListaCompulsasFragment.CambiarFragmentListener) context;
+        cambiadorDeFragment = (CambiadorDeFragment) context;
     }
 
     public AgregarCompulsaFragment() {
@@ -68,9 +68,9 @@ public class AgregarCompulsaFragment extends Fragment {
                     Toast.makeText(getContext(), "Debe ingresar valores en los campos", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
-                    Compulsa compulsa = new Compulsa(tituloCompulsa, descripcionCompulsa);
+                    Compulsa compulsa = new Compulsa(claveCompulsa, tituloCompulsa, descripcionCompulsa);
                     databaseReference.child(COMPULSA_NODO).child(claveCompulsa).setValue(compulsa);
-                    cambiarFragmentListener.cambiarFragment(0);
+                    cambiadorDeFragment.cambiarFragment(0);
                 }
             }
         });
@@ -78,7 +78,7 @@ public class AgregarCompulsaFragment extends Fragment {
         btnCancelarAgregarCompulsa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cambiarFragmentListener.cambiarFragment(0);
+                cambiadorDeFragment.cambiarFragment(0);
             }
         });
 

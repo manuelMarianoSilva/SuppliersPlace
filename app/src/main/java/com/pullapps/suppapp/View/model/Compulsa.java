@@ -2,14 +2,16 @@ package com.pullapps.suppapp.View.model;
 
 public class Compulsa {
 
+    private String id;
     private String title;
     private String description;
 
-    public Compulsa(){
+    public Compulsa() {
 
     }
 
-    public Compulsa(String title, String description) {
+    public Compulsa(String id, String title, String description) {
+        this.id = id;
         this.title = title;
         this.description = description;
     }
@@ -20,5 +22,9 @@ public class Compulsa {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getId() {
+        return id;
     }
 }

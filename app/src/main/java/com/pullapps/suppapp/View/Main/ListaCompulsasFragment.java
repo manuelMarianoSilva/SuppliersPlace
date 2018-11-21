@@ -24,6 +24,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.pullapps.suppapp.R;
 import com.pullapps.suppapp.View.Login.LoginActivity;
+import com.pullapps.suppapp.View.Utils.CambiadorDeFragment;
+import com.pullapps.suppapp.View.Utils.VisualizadorDeDetalle;
 import com.pullapps.suppapp.View.model.Compulsa;
 
 import java.util.ArrayList;
@@ -45,8 +47,8 @@ public class ListaCompulsasFragment extends Fragment {
     private ArrayAdapter arrayAdapter;
     private DatabaseReference databaseReference;
     private String claveCompulsa;
-    private CambiarFragmentListener cambiarFragmentListener;
-    private VerDetalleCompulsaListener verDetalleCompulsaListener;
+    private CambiadorDeFragment cambiadorDeFragment;
+    private VisualizadorDeDetalle visualizadorDeDetalle;
     private Bundle bundle;
 
 
@@ -57,8 +59,8 @@ public class ListaCompulsasFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        cambiarFragmentListener = (CambiarFragmentListener) context;
-        verDetalleCompulsaListener = (VerDetalleCompulsaListener) context;
+        cambiadorDeFragment = (CambiadorDeFragment) context;
+        visualizadorDeDetalle = (VisualizadorDeDetalle) context;
 
     }
 
@@ -102,7 +104,7 @@ public class ListaCompulsasFragment extends Fragment {
         btnCrearCompulsa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cambiarFragmentListener.cambiarFragment(1);
+                cambiadorDeFragment.cambiarFragment(1);
             }
         });
 
@@ -123,27 +125,11 @@ public class ListaCompulsasFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Compulsa compulsaSeleccionada = compulsas.get(i);
-                verDetalleCompulsaListener.verDetalle(compulsaSeleccionada);
+                visualizadorDeDetalle.verDetalle(compulsaSeleccionada);
 
             }
         });
         return view;
-    }
-
-    public interface CambiarFragmentListener{
-        void cambiarFragment(Integer idClick);
-    }
-
-    public interface VerDetalleCompulsaListener{
-        void verDetalle(Compulsa compulsaSeleccionada);
-    }
-
-    public interface SeleccionarArchivoListener{
-        void seleccionDeArchivo();
-    }
-
-    public interface SubirArchivoListener{
-        void subidaDeArchivo(String id);
     }
 
 }
