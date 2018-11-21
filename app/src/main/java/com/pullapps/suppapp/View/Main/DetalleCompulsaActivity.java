@@ -89,7 +89,7 @@ public class DetalleCompulsaActivity extends AppCompatActivity implements Cambia
             final String fileName = System.currentTimeMillis() + "";
 
             StorageReference storageReference = storage.getReference();
-            storageReference.child("Uploads").child(fileName).putFile(archivoUri)
+            storageReference.child("Compulsas").child(id).child("pliego").child(fileName).putFile(archivoUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -119,8 +119,6 @@ public class DetalleCompulsaActivity extends AppCompatActivity implements Cambia
                     progressDialog.setProgress(currentProgress);
                 }
             });
-
-            //subirArchivo(archivoUri, id);
         } else {
             Toast.makeText(this, "Por favor, seleccione un archivo", Toast.LENGTH_SHORT).show();
         }
@@ -151,54 +149,6 @@ public class DetalleCompulsaActivity extends AppCompatActivity implements Cambia
         } else {
             Toast.makeText(this, "Por favor, seleccione un archivo", Toast.LENGTH_SHORT).show();
         }
-    }
-
-
-    private void subirArchivo(Uri archivoUri, final String id) {
-
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        progressDialog.setTitle("Cargando archivo...");
-        progressDialog.setProgress(0);
-        progressDialog.show();
-
-        storage = FirebaseStorage.getInstance();
-        database = FirebaseDatabase.getInstance();
-
-        final String fileName = System.currentTimeMillis() + "";
-
-        StorageReference storageReference = storage.getReference();
-        storageReference.child("Uploads").child(fileName).putFile(archivoUri)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        String url = taskSnapshot.getDownloadUrl().toString();
-                        DatabaseReference reference =database.getReference();
-                        reference.child("Compulsas").child(id).child("pliego").setValue(url).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-
-                                if (task.isSuccessful()){
-                                    Toast.makeText(DetalleCompulsaActivity.this, "El archivo exitosamente cargado", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    Toast.makeText(DetalleCompulsaActivity.this, "EL archivo no fue exitosamente cargado", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(DetalleCompulsaActivity.this, "EL archivo no fue exitosamente cargado", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                int currentProgress = (int) (100*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
-                progressDialog.setProgress(currentProgress);
-            }
-        });
-
     }
 
 
