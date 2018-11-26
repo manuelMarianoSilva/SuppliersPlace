@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.pullapps.suppapp.View.Main.ListaCompulsasActivity">
+    tools:context=".View.view.Main.ListaCompulsasActivity">
 
     <FrameLayout
         android:id="@+id/fragmentContainer"

@@ -1,4 +1,4 @@
-package com.pullapps.suppapp.View.Utils;
+package com.pullapps.suppapp.View.utils;
 
 /**
  * Created by yonoc on 11/14/2018.

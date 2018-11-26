@@ -1,4 +1,4 @@
-package com.pullapps.suppapp.View.model;
+package com.pullapps.suppapp.View.model.pojo;
 
 public class Compulsa {
 

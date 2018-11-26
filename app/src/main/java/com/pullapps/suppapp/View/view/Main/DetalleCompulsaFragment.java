@@ -1,4 +1,4 @@
-package com.pullapps.suppapp.View.Main;
+package com.pullapps.suppapp.View.view.Main;
 
 
 import android.content.Context;
@@ -11,9 +11,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.pullapps.suppapp.R;
-import com.pullapps.suppapp.View.Utils.CambiadorDeFragment;
-import com.pullapps.suppapp.View.Utils.SeleccionadorDeArchivo;
-import com.pullapps.suppapp.View.Utils.SubidorDeArchivo;
+import com.pullapps.suppapp.View.utils.CambiadorDeFragment;
+import com.pullapps.suppapp.View.utils.SeleccionadorDeArchivo;
+import com.pullapps.suppapp.View.utils.SubidorDeArchivo;
 
 /**
  * A simple {@link Fragment} subclass.

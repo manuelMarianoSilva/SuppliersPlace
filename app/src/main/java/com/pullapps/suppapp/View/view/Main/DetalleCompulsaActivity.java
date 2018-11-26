@@ -1,7 +1,6 @@
-package com.pullapps.suppapp.View.Main;
+package com.pullapps.suppapp.View.view.Main;
 
 import android.Manifest;
-import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -27,10 +26,9 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.pullapps.suppapp.R;
-import com.pullapps.suppapp.View.Utils.CambiadorDeFragment;
-import com.pullapps.suppapp.View.Utils.SeleccionadorDeArchivo;
-import com.pullapps.suppapp.View.Utils.SubidorDeArchivo;
-import com.pullapps.suppapp.View.model.Compulsa;
+import com.pullapps.suppapp.View.utils.CambiadorDeFragment;
+import com.pullapps.suppapp.View.utils.SeleccionadorDeArchivo;
+import com.pullapps.suppapp.View.utils.SubidorDeArchivo;
 
 public class DetalleCompulsaActivity extends AppCompatActivity implements CambiadorDeFragment, SeleccionadorDeArchivo, SubidorDeArchivo {
 

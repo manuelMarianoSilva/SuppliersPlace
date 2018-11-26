@@ -1,4 +1,4 @@
-package com.pullapps.suppapp.View.Login;
+package com.pullapps.suppapp.View.view.Login;
 
 
 import android.os.Bundle;

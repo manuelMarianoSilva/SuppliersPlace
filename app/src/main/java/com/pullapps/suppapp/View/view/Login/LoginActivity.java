@@ -1,4 +1,4 @@
-package com.pullapps.suppapp.View.Login;
+package com.pullapps.suppapp.View.view.Login;
 
 import android.content.Context;
 import android.content.Intent;
@@ -36,7 +36,7 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.pullapps.suppapp.View.Main.ListaCompulsasActivity;
+import com.pullapps.suppapp.View.view.Main.ListaCompulsasActivity;
 import com.pullapps.suppapp.R;
 
 public class LoginActivity extends AppCompatActivity implements PasswordRecoveryFragment.RecoveryFragmentManipulator, GoogleApiClient.OnConnectionFailedListener{

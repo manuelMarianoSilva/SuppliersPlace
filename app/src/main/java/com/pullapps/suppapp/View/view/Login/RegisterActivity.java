@@ -1,4 +1,4 @@
-package com.pullapps.suppapp.View.Login;
+package com.pullapps.suppapp.View.view.Login;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,7 +18,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.pullapps.suppapp.R;
-import com.pullapps.suppapp.View.Main.ListaCompulsasActivity;
+import com.pullapps.suppapp.View.view.Main.ListaCompulsasActivity;
 
 public class RegisterActivity extends AppCompatActivity {
 

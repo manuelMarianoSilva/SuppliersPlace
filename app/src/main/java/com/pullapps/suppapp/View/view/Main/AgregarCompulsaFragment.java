@@ -1,4 +1,4 @@
-package com.pullapps.suppapp.View.Main;
+package com.pullapps.suppapp.View.view.Main;
 
 
 import android.content.Context;
@@ -14,8 +14,8 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.pullapps.suppapp.R;
-import com.pullapps.suppapp.View.Utils.CambiadorDeFragment;
-import com.pullapps.suppapp.View.model.Compulsa;
+import com.pullapps.suppapp.View.utils.CambiadorDeFragment;
+import com.pullapps.suppapp.View.model.pojo.Compulsa;
 
 /**
  * A simple {@link Fragment} subclass.

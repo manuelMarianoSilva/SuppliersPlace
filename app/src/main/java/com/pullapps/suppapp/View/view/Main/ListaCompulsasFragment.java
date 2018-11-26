@@ -1,12 +1,10 @@
-package com.pullapps.suppapp.View.Main;
+package com.pullapps.suppapp.View.view.Main;
 
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,16 +15,14 @@ import android.widget.ListView;
 
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.pullapps.suppapp.R;
-import com.pullapps.suppapp.View.Login.LoginActivity;
-import com.pullapps.suppapp.View.Utils.CambiadorDeFragment;
-import com.pullapps.suppapp.View.Utils.VisualizadorDeDetalle;
-import com.pullapps.suppapp.View.model.Compulsa;
+import com.pullapps.suppapp.View.view.Login.LoginActivity;
+import com.pullapps.suppapp.View.controller.CompulsaControlador;
+import com.pullapps.suppapp.View.utils.CambiadorDeFragment;
+import com.pullapps.suppapp.View.utils.ResultListener;
+import com.pullapps.suppapp.View.utils.VisualizadorDeDetalle;
+import com.pullapps.suppapp.View.model.pojo.Compulsa;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +39,7 @@ public class ListaCompulsasFragment extends Fragment {
     private Button btnCrearCompulsa, btnSalir;
     private ListView lstCompulsas;
     private List<String> titulosCompulsas;
-    private List<Compulsa> compulsas;
+    private List<Compulsa> listaCompulsas;
     private ArrayAdapter arrayAdapter;
     private DatabaseReference databaseReference;
     private String claveCompulsa;
@@ -70,36 +66,31 @@ public class ListaCompulsasFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_lista_compulsas, container, false);
 
+        CompulsaControlador compulsaControlador = new CompulsaControlador();
+
         btnCrearCompulsa = (Button) view.findViewById(R.id.btnCrearCompulsa);
         btnSalir = (Button) view.findViewById(R.id.btnSalir);
         lstCompulsas = (ListView) view.findViewById(R.id.lstCompulsas);
         titulosCompulsas = new ArrayList<>();
-        compulsas = new ArrayList<>();
+
         arrayAdapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_list_item_1, titulosCompulsas);
         lstCompulsas.setAdapter(arrayAdapter);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child(COMPULSA_NODO).addValueEventListener(new ValueEventListener() {
+        listaCompulsas = new ArrayList<>();
+
+        compulsaControlador.obtenerCompulsas(new ResultListener<List<Compulsa>>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void finish(List<Compulsa> resultado) {
+                listaCompulsas = resultado;
                 titulosCompulsas.clear();
-                compulsas.clear();
-                if (dataSnapshot.exists()){
-                    for (DataSnapshot snapshot:dataSnapshot.getChildren()){
-                        Compulsa compulsa = snapshot.getValue(Compulsa.class);
-                        Log.w(TAG, "Titulo Compulsa: " + compulsa.getTitle());
-                        titulosCompulsas.add(compulsa.getTitle());
-                        compulsas.add(compulsa);
-                    }
+                for (Compulsa compulsa: listaCompulsas) {
+                    titulosCompulsas.add(compulsa.getTitle());
+                    arrayAdapter.notifyDataSetChanged();
                 }
-                arrayAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        }, this.getContext());
+
 
         btnCrearCompulsa.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,7 +115,7 @@ public class ListaCompulsasFragment extends Fragment {
         lstCompulsas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Compulsa compulsaSeleccionada = compulsas.get(i);
+                Compulsa compulsaSeleccionada = listaCompulsas.get(i);
                 visualizadorDeDetalle.verDetalle(compulsaSeleccionada);
 
             }
