@@ -2,6 +2,8 @@ package com.pullapps.suppapp.View.view.Main;
 
 
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -10,13 +12,21 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.DatePicker;
+import android.widget.Toast;
 
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.pullapps.suppapp.R;
 import com.pullapps.suppapp.View.utils.CambiadorDeFragment;
+import com.pullapps.suppapp.View.utils.SeleccionadorDeFecha;
 import com.pullapps.suppapp.View.utils.VisualizadorDeDetalle;
 import com.pullapps.suppapp.View.model.pojo.Compulsa;
+
+import static com.pullapps.suppapp.View.view.Main.DetalleCompulsaFragment.DIALOG_ID;
+import static com.pullapps.suppapp.View.view.Main.DetalleCompulsaFragment.day_x;
+import static com.pullapps.suppapp.View.view.Main.DetalleCompulsaFragment.month_x;
+import static com.pullapps.suppapp.View.view.Main.DetalleCompulsaFragment.year_x;
 
 
 public class ListaCompulsasActivity extends AppCompatActivity implements CambiadorDeFragment, VisualizadorDeDetalle {
@@ -80,4 +90,5 @@ public class ListaCompulsasActivity extends AppCompatActivity implements Cambiad
 
 
     }
+
 }

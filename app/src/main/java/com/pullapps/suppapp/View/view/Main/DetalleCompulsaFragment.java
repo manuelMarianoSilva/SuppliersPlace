@@ -13,17 +13,23 @@ import android.widget.TextView;
 import com.pullapps.suppapp.R;
 import com.pullapps.suppapp.View.utils.CambiadorDeFragment;
 import com.pullapps.suppapp.View.utils.SeleccionadorDeArchivo;
+import com.pullapps.suppapp.View.utils.SeleccionadorDeFecha;
 import com.pullapps.suppapp.View.utils.SubidorDeArchivo;
+
+import java.util.Calendar;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class DetalleCompulsaFragment extends Fragment {
-    private TextView tvTituloCompulsa, tvDescripcionCompulsa, tvRutaArchivo;
-    private Button btnVolverCompulsa, btnSeleccionarArchivo, btnSubirArchivo;
+    private TextView tvTituloCompulsa, tvDescripcionCompulsa;
+    private Button btnVolverCompulsa, btnSeleccionarArchivo, btnSubirArchivo, btnSeleccionarFecha;
     private CambiadorDeFragment cambiadorDeFragment;
     private SeleccionadorDeArchivo seleccionadorDeArchivo;
     private SubidorDeArchivo subidorDeArchivo;
+    private SeleccionadorDeFecha seleccionadorDeFecha;
+    static int year_x, month_x, day_x;
+    static final int DIALOG_ID = 0;
 
 
     @Override
@@ -32,6 +38,7 @@ public class DetalleCompulsaFragment extends Fragment {
         cambiadorDeFragment = (CambiadorDeFragment) context;
         seleccionadorDeArchivo = (SeleccionadorDeArchivo) context;
         subidorDeArchivo = (SubidorDeArchivo) context;
+        seleccionadorDeFecha = (SeleccionadorDeFecha) context;
 
     }
 
@@ -47,12 +54,13 @@ public class DetalleCompulsaFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_detalle_compulsa, container, false);
 
-        tvTituloCompulsa = (TextView) view.findViewById(R.id.tvTituloCompulsa);
-        tvDescripcionCompulsa = (TextView) view.findViewById(R.id.tvDescripcionCompulsa);
-        tvRutaArchivo = (TextView) view.findViewById(R.id.tvRutaArchivo);
-        btnVolverCompulsa = (Button) view.findViewById(R.id.btnVolverCompulsa);
-        btnSeleccionarArchivo = (Button) view.findViewById(R.id.btnSeleccionarArchivo);
-        btnSubirArchivo = (Button) view.findViewById(R.id.btnSubirArchivo);
+        tvTituloCompulsa = view.findViewById(R.id.tvTituloCompulsa);
+        tvDescripcionCompulsa = view.findViewById(R.id.tvDescripcionCompulsa);
+
+        btnVolverCompulsa = view.findViewById(R.id.btnVolverCompulsa);
+        btnSeleccionarArchivo = view.findViewById(R.id.btnSeleccionarArchivo);
+        btnSubirArchivo = view.findViewById(R.id.btnSubirArchivo);
+        btnSeleccionarFecha = view.findViewById(R.id.btnSeleccionarFecha);
 
         final Bundle bundle = getArguments();
 
@@ -63,6 +71,17 @@ public class DetalleCompulsaFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 cambiadorDeFragment.cambiarFragment(0);
+            }
+        });
+
+        btnSeleccionarFecha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Calendar calendar = Calendar.getInstance();
+                year_x = calendar.get(Calendar.YEAR);
+                month_x = calendar.get(Calendar.MONTH);
+                day_x = calendar.get(Calendar.DAY_OF_MONTH);
+                seleccionadorDeFecha.seleccionarFecha(DIALOG_ID);
             }
         });
 
@@ -83,5 +102,9 @@ public class DetalleCompulsaFragment extends Fragment {
 
         return view;
     }
+
+
+
+
 
 }

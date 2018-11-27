@@ -1,6 +1,8 @@
 package com.pullapps.suppapp.View.view.Main;
 
 import android.Manifest;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -12,6 +14,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,12 +31,18 @@ import com.google.firebase.storage.UploadTask;
 import com.pullapps.suppapp.R;
 import com.pullapps.suppapp.View.utils.CambiadorDeFragment;
 import com.pullapps.suppapp.View.utils.SeleccionadorDeArchivo;
+import com.pullapps.suppapp.View.utils.SeleccionadorDeFecha;
 import com.pullapps.suppapp.View.utils.SubidorDeArchivo;
 
-public class DetalleCompulsaActivity extends AppCompatActivity implements CambiadorDeFragment, SeleccionadorDeArchivo, SubidorDeArchivo {
+import static com.pullapps.suppapp.View.view.Main.DetalleCompulsaFragment.DIALOG_ID;
+import static com.pullapps.suppapp.View.view.Main.DetalleCompulsaFragment.day_x;
+import static com.pullapps.suppapp.View.view.Main.DetalleCompulsaFragment.month_x;
+import static com.pullapps.suppapp.View.view.Main.DetalleCompulsaFragment.year_x;
+
+public class DetalleCompulsaActivity extends AppCompatActivity implements CambiadorDeFragment, SeleccionadorDeArchivo, SubidorDeArchivo, SeleccionadorDeFecha {
 
     private Uri archivoUri;
-    private TextView tvRutaArchivo;
+    private TextView tvRutaArchivo, tvFechaCierre;
     FirebaseStorage storage;
     FirebaseDatabase database;
     ProgressDialog progressDialog;
@@ -158,4 +167,30 @@ public class DetalleCompulsaActivity extends AppCompatActivity implements Cambia
     }
 
 
+    @Override
+    public void seleccionarFecha(int dialogId) {
+        showDialog(dialogId);
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id){
+        if (id == DIALOG_ID)
+            return new DatePickerDialog(this, dpickerListener, year_x, month_x, day_x);
+        return null;
+    }
+
+    private DatePickerDialog.OnDateSetListener dpickerListener
+            = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
+            year_x = year;
+            month_x = monthOfYear;
+            day_x = dayOfMonth;
+
+            tvFechaCierre = findViewById(R.id.tvFechaCierre);
+            tvFechaCierre.setText(day_x + "/" + month_x + "/" + year_x);
+
+
+        }
+    };
 }
