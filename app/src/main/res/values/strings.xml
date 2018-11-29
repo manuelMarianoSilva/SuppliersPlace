@@ -16,4 +16,6 @@
     <string name="boton_seleccionar_archivo">Seleccionar Oferta</string>
     <string name="boton_subir_archivo">Subir Oferta</string>
     <string name="boton_seleccionar_fecha">Seleccionar fecha</string>
+    <string name="boton_guardar_compulsa">Guardar</string>
+    <string name="fecha_cierre">Fecha Cierre</string>
 </resources>

@@ -70,8 +70,8 @@
                 android:text="Fecha de Cierre:"
                 android:padding="25dp"/>
 
-            <TextView
-                android:id="@+id/tvFechaCierre"
+            <EditText
+                android:id="@+id/edtFechaCierre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="No hay una fecha seleccionada"
@@ -103,19 +103,20 @@
                 android:textSize="11dp">
             </Button>
 
-            <Button
-                android:id="@+id/btnSeleccionarFecha"
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:text="@string/boton_seleccionar_fecha"
-                android:textSize="11dp">
-            </Button>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/btnGuardarCompulsa"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:text="@string/boton_guardar_compulsa"
+                android:textSize="11dp">
+            </Button>
 
             <Button
                 android:id="@+id/btnVolverCompulsa"

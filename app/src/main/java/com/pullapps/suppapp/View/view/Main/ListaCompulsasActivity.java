@@ -13,6 +13,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.firebase.database.FirebaseDatabase;
@@ -29,9 +30,10 @@ import static com.pullapps.suppapp.View.view.Main.DetalleCompulsaFragment.month_
 import static com.pullapps.suppapp.View.view.Main.DetalleCompulsaFragment.year_x;
 
 
-public class ListaCompulsasActivity extends AppCompatActivity implements CambiadorDeFragment, VisualizadorDeDetalle {
+public class ListaCompulsasActivity extends AppCompatActivity implements CambiadorDeFragment, VisualizadorDeDetalle, SeleccionadorDeFecha {
 
     private Uri archivoUri;
+    private EditText edtFechaCierre;
     FirebaseStorage storage;
     FirebaseDatabase database;
     ProgressDialog progressDialog;
@@ -81,6 +83,7 @@ public class ListaCompulsasActivity extends AppCompatActivity implements Cambiad
         bundle.putString("id", compulsaSeleccionada.getId());
         bundle.putString("title", compulsaSeleccionada.getTitle());
         bundle.putString("description", compulsaSeleccionada.getDescription());
+        bundle.putString("fechaCierre", compulsaSeleccionada.getFechaCierre());
 
 
 
@@ -91,4 +94,29 @@ public class ListaCompulsasActivity extends AppCompatActivity implements Cambiad
 
     }
 
+    @Override
+    public void seleccionarFecha(int dialogId) {
+        showDialog(dialogId);
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id){
+        if (id == DIALOG_ID)
+            return new DatePickerDialog(this, dpickerListener, year_x, month_x, day_x);
+        return null;
+    }
+
+    private DatePickerDialog.OnDateSetListener dpickerListener
+            = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
+            year_x = year;
+            month_x = monthOfYear;
+            day_x = dayOfMonth;
+
+            edtFechaCierre = findViewById(R.id.edtFechaCierre);
+            edtFechaCierre.setText(day_x + "/" + month_x + "/" + year_x);
+
+        }
+    };
 }

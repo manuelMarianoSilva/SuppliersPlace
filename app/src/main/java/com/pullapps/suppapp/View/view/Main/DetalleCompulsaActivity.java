@@ -15,6 +15,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.pullapps.suppapp.R;
 import com.pullapps.suppapp.View.utils.CambiadorDeFragment;
+import com.pullapps.suppapp.View.utils.GuardadorDeCompulsa;
 import com.pullapps.suppapp.View.utils.SeleccionadorDeArchivo;
 import com.pullapps.suppapp.View.utils.SeleccionadorDeFecha;
 import com.pullapps.suppapp.View.utils.SubidorDeArchivo;
@@ -39,10 +41,11 @@ import static com.pullapps.suppapp.View.view.Main.DetalleCompulsaFragment.day_x;
 import static com.pullapps.suppapp.View.view.Main.DetalleCompulsaFragment.month_x;
 import static com.pullapps.suppapp.View.view.Main.DetalleCompulsaFragment.year_x;
 
-public class DetalleCompulsaActivity extends AppCompatActivity implements CambiadorDeFragment, SeleccionadorDeArchivo, SubidorDeArchivo, SeleccionadorDeFecha {
+public class DetalleCompulsaActivity extends AppCompatActivity implements CambiadorDeFragment, SeleccionadorDeArchivo, SubidorDeArchivo, SeleccionadorDeFecha, GuardadorDeCompulsa {
 
     private Uri archivoUri;
-    private TextView tvRutaArchivo, tvFechaCierre;
+    private TextView tvRutaArchivo;
+    private EditText edtFechaCierre;
     FirebaseStorage storage;
     FirebaseDatabase database;
     ProgressDialog progressDialog;
@@ -187,10 +190,18 @@ public class DetalleCompulsaActivity extends AppCompatActivity implements Cambia
             month_x = monthOfYear;
             day_x = dayOfMonth;
 
-            tvFechaCierre = findViewById(R.id.tvFechaCierre);
-            tvFechaCierre.setText(day_x + "/" + month_x + "/" + year_x);
+            edtFechaCierre = findViewById(R.id.edtFechaCierre);
+            edtFechaCierre.setText(day_x + "/" + month_x + "/" + year_x);
 
 
         }
     };
+
+    @Override
+    public void guardarCompulsa(String id, String fechaCierre) {
+        database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference();
+        reference.child("Compulsas").child(id).child("fechaCierre").setValue(fechaCierre);
+
+    }
 }

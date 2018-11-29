@@ -40,6 +40,15 @@
             android:paddingBottom="25dp">
         </EditText>
 
+        <EditText
+            android:id="@+id/edtFechaCierre"
+            android:layout_height="wrap_content"
+            android:hint="@string/fecha_cierre"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:paddingBottom="25dp">
+        </EditText>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
