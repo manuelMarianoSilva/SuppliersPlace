@@ -6,16 +6,18 @@ public class Compulsa {
     private String title;
     private String description;
     private String fechaCierre;
+    private String pliego;
 
     public Compulsa() {
 
     }
 
-    public Compulsa(String id, String title, String description, String fechaCierre) {
+    public Compulsa(String id, String title, String description, String fechaCierre, String pliego) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.fechaCierre = fechaCierre;
+        this.pliego = pliego;
     }
 
     public String getTitle() {
@@ -32,6 +34,10 @@ public class Compulsa {
 
     public String getId() {
         return id;
+    }
+
+    public String getPliego(){
+        return pliego;
     }
 
 

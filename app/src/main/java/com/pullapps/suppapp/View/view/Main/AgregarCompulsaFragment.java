@@ -14,9 +14,11 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.pullapps.suppapp.R;
-import com.pullapps.suppapp.View.utils.CambiadorDeFragment;
 import com.pullapps.suppapp.View.model.pojo.Compulsa;
+import com.pullapps.suppapp.View.utils.SeleccionadorDeArchivo;
 import com.pullapps.suppapp.View.utils.SeleccionadorDeFecha;
+import com.pullapps.suppapp.View.utils.SubidorDeArchivo;
+import com.pullapps.suppapp.View.utils.VisualizadorDeListado;
 
 import java.util.Calendar;
 
@@ -30,13 +32,17 @@ public class AgregarCompulsaFragment extends Fragment {
     private EditText edtTituloCompulsa, edtDescripcionCompulsa, edtFechaCierre;
     private Button btnCancelarAgregarCompulsa;
     private Button btnAceptarAgregarCompulsa;
+    private Button btnSeleccionarArchivo;
     private DatabaseReference databaseReference;
     private String claveCompulsa;
     private String tituloCompulsa;
     private String descripcionCompulsa;
     private String fechaCierre;
-    private CambiadorDeFragment cambiadorDeFragment;
+    private String pliego;
+    private VisualizadorDeListado visualizadorDeListado;
     private SeleccionadorDeFecha seleccionadorDeFecha;
+    private SeleccionadorDeArchivo seleccionadorDeArchivo;
+    private SubidorDeArchivo subidorDeArchivo;
     static int year_x, month_x, day_x;
 
 
@@ -44,8 +50,11 @@ public class AgregarCompulsaFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        cambiadorDeFragment = (CambiadorDeFragment) context;
+        visualizadorDeListado = (VisualizadorDeListado) context;
         seleccionadorDeFecha = (SeleccionadorDeFecha) context;
+        seleccionadorDeArchivo = (SeleccionadorDeArchivo) context;
+        subidorDeArchivo = (SubidorDeArchivo) context;
+
     }
 
     public AgregarCompulsaFragment() {
@@ -61,6 +70,7 @@ public class AgregarCompulsaFragment extends Fragment {
         edtTituloCompulsa = (EditText) view.findViewById(R.id.edtTituloCompulsa);
         edtDescripcionCompulsa = (EditText) view.findViewById(R.id.edtDescripcionCompulsa);
         edtFechaCierre = (EditText) view.findViewById(R.id.edtFechaCierre);
+        btnSeleccionarArchivo = (Button) view.findViewById(R.id.btnSeleccionarArchivo);
         btnAceptarAgregarCompulsa = (Button) view.findViewById(R.id.btnAgregarCompulsa);
         btnCancelarAgregarCompulsa = (Button) view.findViewById(R.id.btnCancelarAgregarCompulsa);
 
@@ -74,13 +84,18 @@ public class AgregarCompulsaFragment extends Fragment {
                 descripcionCompulsa = edtDescripcionCompulsa.getText().toString();
                 fechaCierre = edtFechaCierre.getText().toString();
 
+                subidorDeArchivo.subirArchivo(claveCompulsa);
+
+                AgregarCompulsaActivity agregarCompulsaActivity = (AgregarCompulsaActivity) getContext();
+                pliego = agregarCompulsaActivity.getUrlPliego();
+
                 if (tituloCompulsa.isEmpty() || descripcionCompulsa.isEmpty()){
                     Toast.makeText(getContext(), "Debe ingresar valores en los campos", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
-                    Compulsa compulsa = new Compulsa(claveCompulsa, tituloCompulsa, descripcionCompulsa, fechaCierre);
+                    Compulsa compulsa = new Compulsa(claveCompulsa, tituloCompulsa, descripcionCompulsa, fechaCierre, pliego);
                     databaseReference.child(COMPULSA_NODO).child(claveCompulsa).setValue(compulsa);
-                    cambiadorDeFragment.cambiarFragment(0);
+                    visualizadorDeListado.visualizarListado();
                 }
             }
         });
@@ -88,7 +103,14 @@ public class AgregarCompulsaFragment extends Fragment {
         btnCancelarAgregarCompulsa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cambiadorDeFragment.cambiarFragment(0);
+                visualizadorDeListado.visualizarListado();
+            }
+        });
+
+        btnSeleccionarArchivo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                seleccionadorDeArchivo.seleccionarArchivo();
             }
         });
 

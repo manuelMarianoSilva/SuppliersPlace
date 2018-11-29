@@ -2,6 +2,7 @@ package com.pullapps.suppapp.View.view.Main;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,11 +13,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.pullapps.suppapp.R;
-import com.pullapps.suppapp.View.utils.CambiadorDeFragment;
 import com.pullapps.suppapp.View.utils.GuardadorDeCompulsa;
 import com.pullapps.suppapp.View.utils.SeleccionadorDeArchivo;
 import com.pullapps.suppapp.View.utils.SeleccionadorDeFecha;
 import com.pullapps.suppapp.View.utils.SubidorDeArchivo;
+import com.pullapps.suppapp.View.utils.VisualizadorDeDetalle;
+import com.pullapps.suppapp.View.utils.VisualizadorDeListado;
 
 import java.util.Calendar;
 
@@ -27,11 +29,11 @@ public class DetalleCompulsaFragment extends Fragment {
     private TextView tvTituloCompulsa, tvDescripcionCompulsa;
     private EditText edtFechaCierre;
     private Button btnVolverCompulsa, btnSeleccionarArchivo, btnSubirArchivo, btnGuardarCompulsa;
-    private CambiadorDeFragment cambiadorDeFragment;
     private SeleccionadorDeArchivo seleccionadorDeArchivo;
     private SubidorDeArchivo subidorDeArchivo;
     private SeleccionadorDeFecha seleccionadorDeFecha;
     private GuardadorDeCompulsa guardadorDeCompulsa;
+    private VisualizadorDeListado visualizadorDeListado;
     static int year_x, month_x, day_x;
     static final int DIALOG_ID = 0;
 
@@ -39,11 +41,11 @@ public class DetalleCompulsaFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        cambiadorDeFragment = (CambiadorDeFragment) context;
         seleccionadorDeArchivo = (SeleccionadorDeArchivo) context;
         subidorDeArchivo = (SubidorDeArchivo) context;
         seleccionadorDeFecha = (SeleccionadorDeFecha) context;
         guardadorDeCompulsa = (GuardadorDeCompulsa) context;
+        visualizadorDeListado = (VisualizadorDeListado) context;
 
     }
 
@@ -78,7 +80,7 @@ public class DetalleCompulsaFragment extends Fragment {
         btnVolverCompulsa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cambiadorDeFragment.cambiarFragment(0);
+                visualizadorDeListado.visualizarListado();
             }
         });
 

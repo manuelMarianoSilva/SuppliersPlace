@@ -2,25 +2,40 @@ package com.pullapps.suppapp.View.view.Main;
 
 
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.support.v4.app.Fragment;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.pullapps.suppapp.R;
-import com.pullapps.suppapp.View.utils.CambiadorDeFragment;
+import com.pullapps.suppapp.View.utils.AgregadorDeCompulsa;
+import com.pullapps.suppapp.View.utils.SeleccionadorDeArchivo;
 import com.pullapps.suppapp.View.utils.SeleccionadorDeFecha;
+import com.pullapps.suppapp.View.utils.SubidorDeArchivo;
 import com.pullapps.suppapp.View.utils.VisualizadorDeDetalle;
 import com.pullapps.suppapp.View.model.pojo.Compulsa;
 
@@ -30,13 +45,15 @@ import static com.pullapps.suppapp.View.view.Main.DetalleCompulsaFragment.month_
 import static com.pullapps.suppapp.View.view.Main.DetalleCompulsaFragment.year_x;
 
 
-public class ListaCompulsasActivity extends AppCompatActivity implements CambiadorDeFragment, VisualizadorDeDetalle, SeleccionadorDeFecha {
+public class ListaCompulsasActivity extends AppCompatActivity implements AgregadorDeCompulsa, VisualizadorDeDetalle {
 
+    public String urlPliego;
     private Uri archivoUri;
     private EditText edtFechaCierre;
+    private TextView tvRutaArchivo;
+    ProgressDialog progressDialog;
     FirebaseStorage storage;
     FirebaseDatabase database;
-    ProgressDialog progressDialog;
 
 
     @Override
@@ -55,25 +72,6 @@ public class ListaCompulsasActivity extends AppCompatActivity implements Cambiad
 
     }
 
-    @Override
-    public void cambiarFragment(Integer idClick) {
-        Fragment fragment = null;
-
-        switch (idClick) {
-            case 0:
-                fragment = new ListaCompulsasFragment();
-                break;
-            case 1:
-                fragment = new AgregarCompulsaFragment();
-                break;
-        }
-
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-        fragmentTransaction.replace(R.id.fragmentContainer, fragment);
-        fragmentTransaction.commit();
-    }
 
     @Override
     public void verDetalle(Compulsa compulsaSeleccionada) {
@@ -95,28 +93,9 @@ public class ListaCompulsasActivity extends AppCompatActivity implements Cambiad
     }
 
     @Override
-    public void seleccionarFecha(int dialogId) {
-        showDialog(dialogId);
+    public void agregarCompulsa() {
+        Intent intent = new Intent(ListaCompulsasActivity.this, AgregarCompulsaActivity.class);
+        startActivity(intent);
+
     }
-
-    @Override
-    protected Dialog onCreateDialog(int id){
-        if (id == DIALOG_ID)
-            return new DatePickerDialog(this, dpickerListener, year_x, month_x, day_x);
-        return null;
-    }
-
-    private DatePickerDialog.OnDateSetListener dpickerListener
-            = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
-            year_x = year;
-            month_x = monthOfYear;
-            day_x = dayOfMonth;
-
-            edtFechaCierre = findViewById(R.id.edtFechaCierre);
-            edtFechaCierre.setText(day_x + "/" + month_x + "/" + year_x);
-
-        }
-    };
 }

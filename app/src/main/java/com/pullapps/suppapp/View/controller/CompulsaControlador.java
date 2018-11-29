@@ -31,7 +31,4 @@ public class CompulsaControlador {
 
     }
 
-    public Boolean hayInternet(){
-        return true;
-    }
 }

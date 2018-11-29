@@ -40,14 +40,51 @@
             android:paddingBottom="25dp">
         </EditText>
 
-        <EditText
-            android:id="@+id/edtFechaCierre"
-            android:layout_height="wrap_content"
-            android:hint="@string/fecha_cierre"
-            android:inputType="text"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:paddingBottom="25dp">
-        </EditText>
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre Archivo:"
+                android:padding="25dp"/>
+
+            <TextView
+                android:id="@+id/tvRutaArchivo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No hay un archivo seleccionado"
+                android:textStyle="italic"
+                android:padding="25dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fecha de Cierre:"
+                android:padding="25dp"/>
+
+            <EditText
+                android:id="@+id/edtFechaCierre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No hay una fecha seleccionada"
+                android:textStyle="italic"
+                android:padding="25dp"/>
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -66,6 +103,14 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="@string/boton_cancelar_compulsa">
+            </Button>
+
+            <Button
+                android:id="@+id/btnSeleccionarArchivo"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:text="@string/boton_seleccionar_archivo"
+                android:textSize="11dp">
             </Button>
 
         </LinearLayout>

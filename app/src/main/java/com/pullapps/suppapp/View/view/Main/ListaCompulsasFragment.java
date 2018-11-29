@@ -17,9 +17,9 @@ import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.pullapps.suppapp.R;
+import com.pullapps.suppapp.View.utils.AgregadorDeCompulsa;
 import com.pullapps.suppapp.View.view.Login.LoginActivity;
 import com.pullapps.suppapp.View.controller.CompulsaControlador;
-import com.pullapps.suppapp.View.utils.CambiadorDeFragment;
 import com.pullapps.suppapp.View.utils.ResultListener;
 import com.pullapps.suppapp.View.utils.VisualizadorDeDetalle;
 import com.pullapps.suppapp.View.model.pojo.Compulsa;
@@ -43,7 +43,7 @@ public class ListaCompulsasFragment extends Fragment {
     private ArrayAdapter arrayAdapter;
     private DatabaseReference databaseReference;
     private String claveCompulsa;
-    private CambiadorDeFragment cambiadorDeFragment;
+    private AgregadorDeCompulsa agregadorDeCompulsa;
     private VisualizadorDeDetalle visualizadorDeDetalle;
     private Bundle bundle;
 
@@ -55,7 +55,7 @@ public class ListaCompulsasFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        cambiadorDeFragment = (CambiadorDeFragment) context;
+        agregadorDeCompulsa = (AgregadorDeCompulsa) context;
         visualizadorDeDetalle = (VisualizadorDeDetalle) context;
 
     }
@@ -95,7 +95,7 @@ public class ListaCompulsasFragment extends Fragment {
         btnCrearCompulsa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cambiadorDeFragment.cambiarFragment(1);
+                agregadorDeCompulsa.agregarCompulsa();
             }
         });
 

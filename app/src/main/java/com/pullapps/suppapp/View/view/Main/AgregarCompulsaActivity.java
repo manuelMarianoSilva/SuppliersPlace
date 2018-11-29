@@ -30,7 +30,7 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.pullapps.suppapp.R;
-import com.pullapps.suppapp.View.utils.GuardadorDeCompulsa;
+import com.pullapps.suppapp.View.utils.AgregadorDeCompulsa;
 import com.pullapps.suppapp.View.utils.SeleccionadorDeArchivo;
 import com.pullapps.suppapp.View.utils.SeleccionadorDeFecha;
 import com.pullapps.suppapp.View.utils.SubidorDeArchivo;
@@ -41,51 +41,63 @@ import static com.pullapps.suppapp.View.view.Main.DetalleCompulsaFragment.day_x;
 import static com.pullapps.suppapp.View.view.Main.DetalleCompulsaFragment.month_x;
 import static com.pullapps.suppapp.View.view.Main.DetalleCompulsaFragment.year_x;
 
-public class DetalleCompulsaActivity extends AppCompatActivity implements SeleccionadorDeArchivo, SubidorDeArchivo, SeleccionadorDeFecha, GuardadorDeCompulsa, VisualizadorDeListado {
+public class AgregarCompulsaActivity extends AppCompatActivity implements VisualizadorDeListado, SeleccionadorDeFecha, SeleccionadorDeArchivo, SubidorDeArchivo {
 
-    private Uri archivoUri;
     private TextView tvRutaArchivo;
-    private EditText edtFechaCierre;
+    private Uri archivoUri;
+    ProgressDialog progressDialog;
     FirebaseStorage storage;
     FirebaseDatabase database;
-    ProgressDialog progressDialog;
+    public String urlPliego;
+    private EditText edtFechaCierre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detalle_compulsa);
+        setContentView(R.layout.activity_agregar_compulsa);
 
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-
-
-        DetalleCompulsaFragment detalleCompulsaFragment = new DetalleCompulsaFragment();
-        detalleCompulsaFragment.setArguments(bundle);
+        AgregarCompulsaFragment agregarCompulsaFragment = new AgregarCompulsaFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        fragmentTransaction.replace(R.id.fragmentContainer, detalleCompulsaFragment);
+        fragmentTransaction.replace(R.id.fragmentContainer, agregarCompulsaFragment);
         fragmentTransaction.commit();
+    }
 
-
+    @Override
+    public void visualizarListado() {
+        Intent intent = new Intent(AgregarCompulsaActivity.this, ListaCompulsasActivity.class);
+        startActivity(intent);
     }
 
     @Override
     public void seleccionarArchivo() {
-        if (ContextCompat.checkSelfPermission(DetalleCompulsaActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE)==PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(AgregarCompulsaActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE)==PackageManager.PERMISSION_GRANTED) {
             Intent intent = new Intent();
             intent.setType("application/pdf");
             intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
             startActivityForResult(intent, 86);
 
         } else {
-            ActivityCompat.requestPermissions(DetalleCompulsaActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 9);
+            ActivityCompat.requestPermissions(AgregarCompulsaActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 9);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        tvRutaArchivo = (TextView) findViewById(R.id.tvRutaArchivo);
+
+        if (requestCode == 86 && resultCode == RESULT_OK && data != null) {
+            archivoUri = data.getData();
+            tvRutaArchivo.setText(archivoUri.getLastPathSegment());
+        } else {
+            Toast.makeText(this, "Por favor, seleccione un archivo", Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
     public void subirArchivo(final String id) {
-
         if (archivoUri != null) {
             progressDialog = new ProgressDialog(this);
             progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
@@ -103,16 +115,16 @@ public class DetalleCompulsaActivity extends AppCompatActivity implements Selecc
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            String url = taskSnapshot.getDownloadUrl().toString();
+                            urlPliego = taskSnapshot.getDownloadUrl().toString();
                             DatabaseReference reference = database.getReference();
-                            reference.child("Compulsas").child(id).child("pliego").setValue(url).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            reference.child("Compulsas").child(id).child("pliego").setValue(urlPliego).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
 
                                     if (task.isSuccessful()){
-                                        Toast.makeText(DetalleCompulsaActivity.this, "El archivo exitosamente cargado", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(AgregarCompulsaActivity.this, "El archivo exitosamente cargado", Toast.LENGTH_SHORT).show();
                                     } else {
-                                        Toast.makeText(DetalleCompulsaActivity.this, "EL archivo no fue exitosamente cargado", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(AgregarCompulsaActivity.this, "EL archivo no fue exitosamente cargado", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
@@ -120,7 +132,7 @@ public class DetalleCompulsaActivity extends AppCompatActivity implements Selecc
                     }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(DetalleCompulsaActivity.this, "EL archivo no fue exitosamente cargado", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AgregarCompulsaActivity.this, "EL archivo no fue exitosamente cargado", Toast.LENGTH_SHORT).show();
                 }
             }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -133,34 +145,6 @@ public class DetalleCompulsaActivity extends AppCompatActivity implements Selecc
             Toast.makeText(this, "Por favor, seleccione un archivo", Toast.LENGTH_SHORT).show();
         }
     }
-
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-
-        if (requestCode == 9 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            Intent intent = new Intent();
-            intent.setType("application/pdf");
-            intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
-            startActivityForResult(intent, 86);
-        } else {
-            Toast.makeText(this, "Por favor, conceda los permisos", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        tvRutaArchivo = (TextView) findViewById(R.id.tvRutaArchivo);
-
-        if (requestCode == 86 && resultCode == RESULT_OK && data != null) {
-            archivoUri = data.getData();
-            tvRutaArchivo.setText(archivoUri.getLastPathSegment());
-        } else {
-            Toast.makeText(this, "Por favor, seleccione un archivo", Toast.LENGTH_SHORT).show();
-        }
-    }
-
 
     @Override
     public void seleccionarFecha(int dialogId) {
@@ -185,21 +169,11 @@ public class DetalleCompulsaActivity extends AppCompatActivity implements Selecc
             edtFechaCierre = findViewById(R.id.edtFechaCierre);
             edtFechaCierre.setText(day_x + "/" + month_x + "/" + year_x);
 
-
         }
     };
 
-    @Override
-    public void guardarCompulsa(String id, String fechaCierre) {
-        database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference();
-        reference.child("Compulsas").child(id).child("fechaCierre").setValue(fechaCierre);
-
+    public String getUrlPliego(){
+        return urlPliego;
     }
 
-    @Override
-    public void visualizarListado() {
-        Intent intent = new Intent(DetalleCompulsaActivity.this, ListaCompulsasActivity.class);
-        startActivity(intent);
-    }
 }
