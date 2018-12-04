@@ -15,7 +15,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,7 +44,7 @@ public class DetalleCompulsaActivity extends AppCompatActivity implements Selecc
 
     private Uri archivoUri;
     private TextView tvRutaArchivo;
-    private EditText edtFechaCierre;
+    private TextView tvFechaCierre;
     FirebaseStorage storage;
     FirebaseDatabase database;
     ProgressDialog progressDialog;
@@ -179,11 +178,11 @@ public class DetalleCompulsaActivity extends AppCompatActivity implements Selecc
         @Override
         public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
             year_x = year;
-            month_x = monthOfYear;
+            month_x = monthOfYear + 1;
             day_x = dayOfMonth;
 
-            edtFechaCierre = findViewById(R.id.edtFechaCierre);
-            edtFechaCierre.setText(day_x + "/" + month_x + "/" + year_x);
+            tvFechaCierre = findViewById(R.id.tvFechaCierre);
+            tvFechaCierre.setText(day_x + "/" + month_x + "/" + year_x);
 
 
         }

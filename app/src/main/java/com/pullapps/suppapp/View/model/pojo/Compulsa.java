@@ -7,17 +7,19 @@ public class Compulsa {
     private String description;
     private String fechaCierre;
     private String pliego;
+    private String urlImagen;
 
     public Compulsa() {
 
     }
 
-    public Compulsa(String id, String title, String description, String fechaCierre, String pliego) {
+    public Compulsa(String id, String title, String description, String fechaCierre, String pliego, String urlImagen) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.fechaCierre = fechaCierre;
         this.pliego = pliego;
+        this.urlImagen = urlImagen;
     }
 
     public String getTitle() {
@@ -40,5 +42,7 @@ public class Compulsa {
         return pliego;
     }
 
-
+    public String getUrlImagen() {
+        return urlImagen;
+    }
 }

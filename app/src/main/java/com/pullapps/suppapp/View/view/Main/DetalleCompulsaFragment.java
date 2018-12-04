@@ -2,22 +2,20 @@ package com.pullapps.suppapp.View.view.Main;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.pullapps.suppapp.R;
 import com.pullapps.suppapp.View.utils.GuardadorDeCompulsa;
 import com.pullapps.suppapp.View.utils.SeleccionadorDeArchivo;
 import com.pullapps.suppapp.View.utils.SeleccionadorDeFecha;
 import com.pullapps.suppapp.View.utils.SubidorDeArchivo;
-import com.pullapps.suppapp.View.utils.VisualizadorDeDetalle;
 import com.pullapps.suppapp.View.utils.VisualizadorDeListado;
 
 import java.util.Calendar;
@@ -26,8 +24,7 @@ import java.util.Calendar;
  * A simple {@link Fragment} subclass.
  */
 public class DetalleCompulsaFragment extends Fragment {
-    private TextView tvTituloCompulsa, tvDescripcionCompulsa;
-    private EditText edtFechaCierre;
+    private TextView tvTituloCompulsa, tvDescripcionCompulsa, tvFechaCierre, tvRutaArchivo;
     private Button btnVolverCompulsa, btnSeleccionarArchivo, btnSubirArchivo, btnGuardarCompulsa;
     private SeleccionadorDeArchivo seleccionadorDeArchivo;
     private SubidorDeArchivo subidorDeArchivo;
@@ -63,11 +60,11 @@ public class DetalleCompulsaFragment extends Fragment {
 
         tvTituloCompulsa = view.findViewById(R.id.tvTituloCompulsa);
         tvDescripcionCompulsa = view.findViewById(R.id.tvDescripcionCompulsa);
-        edtFechaCierre = view.findViewById(R.id.edtFechaCierre);
+        tvFechaCierre = view.findViewById(R.id.tvFechaCierre);
+        tvRutaArchivo = view.findViewById(R.id.tvRutaArchivo);
 
 
         btnVolverCompulsa = view.findViewById(R.id.btnVolverCompulsa);
-        btnSeleccionarArchivo = view.findViewById(R.id.btnSeleccionarArchivo);
         btnSubirArchivo = view.findViewById(R.id.btnSubirArchivo);
         btnGuardarCompulsa = view.findViewById(R.id.btnGuardarCompulsa);
 
@@ -75,7 +72,7 @@ public class DetalleCompulsaFragment extends Fragment {
 
         tvTituloCompulsa.setText(bundle.getString("title"));
         tvDescripcionCompulsa.setText(bundle.getString("description"));
-        edtFechaCierre.setText(bundle.getString("fechaCierre"));
+        tvFechaCierre.setText(bundle.getString("fechaCierre"));
 
         btnVolverCompulsa.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,12 +84,17 @@ public class DetalleCompulsaFragment extends Fragment {
         btnGuardarCompulsa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String fechaCierre = edtFechaCierre.getText().toString();
-                guardadorDeCompulsa.guardarCompulsa(bundle.getString("id"), fechaCierre);
+                if (tvFechaCierre.getText().toString().length() > 10) {
+                    Toast.makeText(getContext(), "Debe ingresar valores en los campos", Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                    String fechaCierre = tvFechaCierre.getText().toString();
+                    guardadorDeCompulsa.guardarCompulsa(bundle.getString("id"), fechaCierre);
+                }
             }
         });
 
-        edtFechaCierre.setOnClickListener(new View.OnClickListener() {
+        tvFechaCierre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final Calendar calendar = Calendar.getInstance();
@@ -103,7 +105,7 @@ public class DetalleCompulsaFragment extends Fragment {
             }
         });
 
-        btnSeleccionarArchivo.setOnClickListener(new View.OnClickListener() {
+        tvRutaArchivo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 seleccionadorDeArchivo.seleccionarArchivo();

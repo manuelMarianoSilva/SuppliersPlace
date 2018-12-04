@@ -34,6 +34,7 @@ import com.pullapps.suppapp.View.utils.AgregadorDeCompulsa;
 import com.pullapps.suppapp.View.utils.SeleccionadorDeArchivo;
 import com.pullapps.suppapp.View.utils.SeleccionadorDeFecha;
 import com.pullapps.suppapp.View.utils.SubidorDeArchivo;
+import com.pullapps.suppapp.View.utils.SubidorDeImagen;
 import com.pullapps.suppapp.View.utils.VisualizadorDeListado;
 
 import static com.pullapps.suppapp.View.view.Main.DetalleCompulsaFragment.DIALOG_ID;
@@ -49,7 +50,7 @@ public class AgregarCompulsaActivity extends AppCompatActivity implements Visual
     FirebaseStorage storage;
     FirebaseDatabase database;
     public String urlPliego;
-    private EditText edtFechaCierre;
+    private TextView tvFechaCierre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,6 +147,7 @@ public class AgregarCompulsaActivity extends AppCompatActivity implements Visual
         }
     }
 
+
     @Override
     public void seleccionarFecha(int dialogId) {
         showDialog(dialogId);
@@ -163,17 +165,18 @@ public class AgregarCompulsaActivity extends AppCompatActivity implements Visual
         @Override
         public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
             year_x = year;
-            month_x = monthOfYear;
+            month_x = monthOfYear + 1;
             day_x = dayOfMonth;
 
-            edtFechaCierre = findViewById(R.id.edtFechaCierre);
-            edtFechaCierre.setText(day_x + "/" + month_x + "/" + year_x);
+            tvFechaCierre = findViewById(R.id.tvFechaCierre);
+            tvFechaCierre.setText(day_x + "/" + month_x + "/" + year_x);
+
 
         }
     };
-
     public String getUrlPliego(){
         return urlPliego;
     }
+
 
 }

@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/descripcion_compulsa"
             android:inputType="textMultiLine"
-            android:lines="5"
+            android:lines="3"
             android:paddingBottom="25dp">
         </EditText>
 
@@ -70,8 +70,8 @@
                 android:text="Fecha de Cierre:"
                 android:padding="25dp"/>
 
-            <EditText
-                android:id="@+id/edtFechaCierre"
+            <TextView
+                android:id="@+id/tvFechaCierre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="No hay una fecha seleccionada"
@@ -103,14 +103,6 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="@string/boton_cancelar_compulsa">
-            </Button>
-
-            <Button
-                android:id="@+id/btnSeleccionarArchivo"
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:text="@string/boton_seleccionar_archivo"
-                android:textSize="11dp">
             </Button>
 
         </LinearLayout>
